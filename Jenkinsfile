@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         GITHUB_REPO = 'https://github.com/robyrai/jenkins-pipeline-demo/'
-        API_URL = 'http://localhost:8080'
+        API_URL = 'https://echo.zuplo.io'
     }
 
     stages {
