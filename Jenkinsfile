@@ -25,10 +25,21 @@ pipeline {
                 script {
                     def envFileContents = readFile('data.json') // Specify the path to your env file
                     echo envFileContents
-                    //def apiUrl = "${API_URL}/your-api-endpoint"
 
-                    // Use 'envFileContents' and 'apiUrl' in your HTTP request
-                    // You may use the HTTP Request plugin or other methods to make the POST request
+                    def response = httpRequest(
+                        contentType: 'APPLICATION_JSON',
+                        httpMode: 'POST',
+                        requestBody: envFileContents,
+                        url: apiUrl
+                    )
+
+                    def responseStatus = response.status
+                    def responseBody = response.content
+
+                    echo "API Response Status: ${responseStatus}"
+                    echo "API Response Body: ${responseBody}"
+
+                    // You can process the response as needed
                 }
             }
         }
