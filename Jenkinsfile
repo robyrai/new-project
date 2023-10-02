@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         GITHUB_REPO = 'https://github.com/robyrai/jenkins-pipeline-demo/'
-        API_URL = 'http://localhost:8080/echo'
+        API_URL = 'http://localhost:8080'
     }
 
     stages {
@@ -25,6 +25,8 @@ pipeline {
                 script {
                     def envFileContents = readFile('data.json') // Specify the path to your env file
                     echo envFileContents
+                    def apiUrl = "${API_URL}/echo"
+
 
                     def response = httpRequest(
                         contentType: 'APPLICATION_JSON',
