@@ -1,0 +1,110 @@
+Started by user Roby Rai
+Obtained Jenkinsfile from git https://github.com/robyrai/new-project/
+[Pipeline] Start of Pipeline
+[Pipeline] node
+Running on Jenkins in /var/lib/jenkins/workspace/demo1
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Declarative: Checkout SCM)
+[Pipeline] checkout
+The recommended git tool is: NONE
+No credentials specified
+ > git rev-parse --resolve-git-dir /var/lib/jenkins/workspace/demo1/.git # timeout=10
+Fetching changes from the remote Git repository
+ > git config remote.origin.url https://github.com/robyrai/new-project/ # timeout=10
+Fetching upstream changes from https://github.com/robyrai/new-project/
+ > git --version # timeout=10
+ > git --version # 'git version 2.25.1'
+ > git fetch --tags --force --progress -- https://github.com/robyrai/new-project/ +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git rev-parse refs/remotes/origin/main^{commit} # timeout=10
+Checking out Revision a337a81da9fba6798d088afc79452bba9876a082 (refs/remotes/origin/main)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f a337a81da9fba6798d088afc79452bba9876a082 # timeout=10
+Commit message: "Update Jenkinsfile"
+ > git rev-list --no-walk 448a3473e32ef33743ed716249f3e3971eac1c58 # timeout=10
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Fetch Environment File)
+[Pipeline] script
+[Pipeline] {
+[Pipeline] checkout
+The recommended git tool is: NONE
+No credentials specified
+ > git rev-parse --resolve-git-dir /var/lib/jenkins/workspace/demo1/.git # timeout=10
+Fetching changes from the remote Git repository
+ > git config remote.origin.url https://github.com/robyrai/jenkins-pipeline-demo/ # timeout=10
+Fetching upstream changes from https://github.com/robyrai/jenkins-pipeline-demo/
+ > git --version # timeout=10
+ > git --version # 'git version 2.25.1'
+ > git fetch --tags --force --progress -- https://github.com/robyrai/jenkins-pipeline-demo/ +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git rev-parse refs/remotes/origin/main^{commit} # timeout=10
+Checking out Revision 43280d88c6f48c1a2aa095a46a87045a209fcf9e (refs/remotes/origin/main)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f 43280d88c6f48c1a2aa095a46a87045a209fcf9e # timeout=10
+Commit message: "Create data.json"
+ > git rev-list --no-walk 43280d88c6f48c1a2aa095a46a87045a209fcf9e # timeout=10
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Call API)
+[Pipeline] script
+[Pipeline] {
+[Pipeline] readFile
+[Pipeline] echo
+{
+  "os": "rhel-8",
+  "size": 5000,
+  "email": "john.doe@example.com"
+}
+
+[Pipeline] httpRequest
+HttpMethod: POST
+URL: https://echo.zuplo.io/echo
+Content-Type: application/json
+Sending request to url: https://echo.zuplo.io/echo
+Response Code: HTTP/1.1 200 OK
+Success: Status code 200 is in the accepted range: 100:399
+[Pipeline] echo
+API Response Status: 200
+[Pipeline] echo
+API Response Body: {
+  "url": "https://echo.zuplo.io/echo",
+  "method": "POST",
+  "query": {},
+  "body": {
+    "os": "rhel-8",
+    "size": 5000,
+    "email": "john.doe@example.com"
+  },
+  "headers": {
+    "accept-encoding": "gzip",
+    "connection": "Keep-Alive",
+    "content-length": "72",
+    "content-type": "application/json",
+    "host": "echo.zuplo.io",
+    "true-client-ip": "76.36.25.132",
+    "user-agent": "Apache-HttpClient/4.5.14 (Java/17.0.8.1)",
+    "x-forwarded-proto": "https",
+    "x-real-ip": "76.36.25.132",
+    "zp-rid": "13a61ba5-4006-4bda-a19a-03599d11b664"
+  }
+}
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] End of Pipeline
+Finished: SUCCESS
